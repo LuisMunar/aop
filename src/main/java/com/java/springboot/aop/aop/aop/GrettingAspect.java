@@ -1,11 +1,13 @@
 package com.java.springboot.aop.aop.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -41,5 +43,20 @@ public class GrettingAspect {
     String methodName = joinPoint.getSignature().getName();
     String args = joinPoint.getArgs().toString();
     logger.info("After => " + methodName + " => " + args);
+  }
+
+  @Around("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
+  public Object aroundGretting(ProceedingJoinPoint joinPoint) throws Throwable {
+    try {
+      String methodName = joinPoint.getSignature().getName();
+      String args = joinPoint.getArgs().toString();
+      logger.info("Around => " + methodName + " => " + args);
+      Object result = joinPoint.proceed();
+      logger.info("Around result => " + result);
+      return result;
+    } catch (Throwable e) {
+      logger.error("Around error => " + e.getMessage());
+      throw e;
+    }
   }
 }
