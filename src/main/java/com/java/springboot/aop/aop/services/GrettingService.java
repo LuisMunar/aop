@@ -11,4 +11,9 @@ public class GrettingService implements GrettingServiceInterface {
     System.out.println("greeting => " + greeting);
     return greeting;
   }
+
+  @Override
+  public String greetError(String name, String text) {
+    throw new RuntimeException("Custom Error generated from greetError method");
+  }
 }

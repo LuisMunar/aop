@@ -23,4 +23,10 @@ public class GreetingController {
     Map<String, String> response = Map.of("greeting", grettingService.greet("John Doe", "Hey there"));
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
+
+  @GetMapping("/bar")
+  public ResponseEntity<?> greetError() {
+    Map<String, String> response = Map.of("greeting", grettingService.greetError("John Doe", "Hey there"));
+    return ResponseEntity.status(HttpStatus.OK).body(response);
+  }
 }
