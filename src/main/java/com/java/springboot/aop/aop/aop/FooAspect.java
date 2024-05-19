@@ -18,21 +18,21 @@ public class FooAspect {
 
   @Before("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
   public void before() {
-    logger.info("Before method execution");
+    logger.info("Before method execution I");
   }
 
   @After("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
   public void after() {
-    logger.info("After method execution");
+    logger.info("After method execution I");
   }
 
   @AfterReturning("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
   public void afterReturning() {
-    logger.info("After returning method execution");
+    logger.info("After returning method execution I");
   }
 
   @AfterThrowing("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
   public void afterThrowing() {
-    logger.info("After throwing method execution");
+    logger.info("After throwing method execution I");
   }
 }
