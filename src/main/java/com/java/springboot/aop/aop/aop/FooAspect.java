@@ -16,22 +16,22 @@ import org.springframework.stereotype.Component;
 public class FooAspect {
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  @Before("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
+  @Before("PointCuts.greetingLoggerPointcut()")
   public void before() {
     logger.info("Before method execution I");
   }
 
-  @After("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
+  @After("PointCuts.greetingLoggerPointcut()")
   public void after() {
     logger.info("After method execution I");
   }
 
-  @AfterReturning("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
+  @AfterReturning("PointCuts.greetingLoggerPointcut()")
   public void afterReturning() {
     logger.info("After returning method execution I");
   }
 
-  @AfterThrowing("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
+  @AfterThrowing("PointCuts.greetingLoggerPointcut()")
   public void afterThrowing() {
     logger.info("After throwing method execution I");
   }

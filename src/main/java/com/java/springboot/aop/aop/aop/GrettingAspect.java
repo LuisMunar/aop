@@ -4,7 +4,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -20,38 +19,35 @@ import org.springframework.stereotype.Component;
 public class GrettingAspect {
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  @Pointcut("execution(* com.java.springboot.aop.aop.services.GrettingService.*(..))")
-  private void greetingLoggerPointcut() {}
-
-  @Before("greetingLoggerPointcut()")
+  @Before("PointCuts.greetingLoggerPointcut()")
   public void beforeGreeting(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = joinPoint.getArgs().toString();
     logger.info("Before II => " + methodName + " => " + args);
   }
 
-  @AfterReturning("greetingLoggerPointcut()")
+  @AfterReturning("PointCuts.greetingLoggerPointcut()")
   public void afterReturningGreeting(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = joinPoint.getArgs().toString();
     logger.info("After Returning II => " + methodName + " => " + args);
   }
 
-  @AfterThrowing("greetingLoggerPointcut()")
+  @AfterThrowing("PointCuts.greetingLoggerPointcut()")
   public void afterThrowingGreeting(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = joinPoint.getArgs().toString();
     logger.info("After Throwing II => " + methodName + " => " + args);
   }
 
-  @After("greetingLoggerPointcut()")
+  @After("PointCuts.greetingLoggerPointcut()")
   public void afterGreeting(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = joinPoint.getArgs().toString();
     logger.info("After II => " + methodName + " => " + args);
   }
 
-  @Around("greetingLoggerPointcut()")
+  @Around("PointCuts.greetingLoggerPointcut()")
   public Object aroundGretting(ProceedingJoinPoint joinPoint) throws Throwable {
     try {
       String methodName = joinPoint.getSignature().getName();
